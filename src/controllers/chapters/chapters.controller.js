@@ -1,9 +1,13 @@
 const axios = require('axios');
-const { API_URL, config } = require('../../constants.js');
+const { API_URL, config, API_KEY } = require('../../constants.js');
 
 async function getAllChapters() {
-  const { data: { docs } } = await axios.get(`${API_URL}/chapter`, config);
-  
+  const { data: { docs } } = await axios({
+    method: 'get',
+    url: `${API_URL}/chapter`,
+    headers: config.headers
+  });
+
   return docs;
 }
 
