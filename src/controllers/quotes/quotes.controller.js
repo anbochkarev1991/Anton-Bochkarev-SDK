@@ -13,8 +13,6 @@ async function getOneQuote(id) {
   return data;
 }
 
-getAllChapters();
-
 module.exports = {
   getAllQuotes,
   getOneQuote,

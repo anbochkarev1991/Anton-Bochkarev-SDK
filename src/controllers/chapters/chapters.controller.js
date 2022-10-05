@@ -13,8 +13,6 @@ async function getOneChapter(id) {
   return data;
 }
 
-getAllChapters();
-
 module.exports = {
   getAllChapters,
   getOneChapter,
