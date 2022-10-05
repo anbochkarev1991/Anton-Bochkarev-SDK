@@ -2,19 +2,22 @@ const axios = require('axios');
 const { API_URL, config } = require('../../constants.js');
 
 async function getAllCharacters() {
-  const { data: { docs } } = await axios.get(`${API_URL}/character`, config);
+  const { body: { docs } } = await superagent.get(`${API_URL}/character`)
+    .set('Authorization', `Bearer ${API_KEY}`);
   
   return docs;
 }
 
 async function getOneCharacter(id) {
-  const { data: { docs } } = await axios.get(`${API_URL}/character/${id}`, config);
+  const { body: { docs } } = await superagent.get(`${API_URL}/character/${id}`)
+    .set('Authorization', `Bearer ${API_KEY}`);
   
   return docs;
 }
 
 async function getOneCharacterQuotes(id) {
-  const { data: { docs } } = await axios.get(`${API_URL}/character/${id}/quote`, config);
+  const { body: { docs } } = await superagent.get(`${API_URL}/character/${id}/quote`)
+    .set('Authorization', `Bearer ${API_KEY}`);
   
   return docs;
 }

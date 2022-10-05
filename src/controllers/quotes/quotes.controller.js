@@ -1,14 +1,16 @@
-const axios = require('axios');
-const { API_URL, config } = require('../../constants.js');
+const superagent = require('superagent');
+const { API_URL, API_KEY } = require('../../constants.js');
 
 async function getAllQuotes() {
-  const { data: { docs } } = await axios.get(`${API_URL}/quote`, config);
+  const { body: { docs } } = await superagent.get(`${API_URL}/quote`)
+    .set('Authorization', `Bearer ${API_KEY}`);
   
   return docs;
 }
 
 async function getOneQuote(id) {
-  const { data: { docs } } = await axios.get(`${API_URL}/quote/${id}`, config);
+  const { body: { docs } } = await superagent.get(`${API_URL}/quote/${id}`)
+    .set('Authorization', `Bearer ${API_KEY}`);
   
   return docs;
 }

@@ -1,18 +1,16 @@
-const axios = require('axios');
-const { API_URL, config, API_KEY } = require('../../constants.js');
+const superagent = require('superagent');
+const { API_URL, API_KEY } = require('../../constants.js');
 
 async function getAllChapters() {
-  const { data: { docs } } = await axios({
-    method: 'get',
-    url: `${API_URL}/chapter`,
-    headers: config.headers
-  });
+  const { body: { docs } } = await superagent.get(`${API_URL}/chapter`)
+    .set('Authorization', `Bearer ${API_KEY}`);
 
   return docs;
 }
 
 async function getOneChapter(id) {
-  const { data: { docs } } = await axios.get(`${API_URL}/chapter/${id}`, config);
+  const { body: { docs } } = await superagent.get(`${API_URL}/chapter/${id}`)
+    .set('Authorization', `Bearer ${API_KEY}`);
   
   return docs;
 }
