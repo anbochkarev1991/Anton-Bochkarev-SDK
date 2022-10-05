@@ -2,21 +2,21 @@ const axios = require('axios');
 const { API_URL, config } = require('../../constants.js');
 
 async function getAllMovies() {
-  const { data } = await axios(`${API_URL}/movie`, config);
+  const { data: { docs } } = await axios.get(`${API_URL}/movie`, config);
   
-  return data;
+  return docs;
 }
 
 async function getOneMovie(id) {
-  const { data } = await axios(`${API_URL}/movie/${id}`, config);
+  const { data: { docs } } = await axios.get(`${API_URL}/movie/${id}`, config);
   
-  return data;
+  return docs;
 }
 
 async function getOneMovieQuotes(id) {
-  const { data } = await axios(`${API_URL}/movie/${id}/quote`, config);
+  const { data: { docs } } = await axios.get(`${API_URL}/movie/${id}/quote`, config);
   
-  return data;
+  return docs;
 }
 
 module.exports = {

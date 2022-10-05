@@ -2,15 +2,15 @@ const axios = require('axios');
 const { API_URL, config } = require('../../constants.js');
 
 async function getAllQuotes() {
-  const { data } = await axios(`${API_URL}/quote`, config);
+  const { data: { docs } } = await axios.get(`${API_URL}/quote`, config);
   
-  return data;
+  return docs;
 }
 
 async function getOneQuote(id) {
-  const { data } = await axios(`${API_URL}/quote/${id}`, config);
+  const { data: { docs } } = await axios.get(`${API_URL}/quote/${id}`, config);
   
-  return data;
+  return docs;
 }
 
 module.exports = {
