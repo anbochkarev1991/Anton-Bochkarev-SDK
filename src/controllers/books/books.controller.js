@@ -2,21 +2,34 @@ const superagent = require('superagent');
 const { API_URL } = require('../../constants.js');
 
 async function getAllBooks() {
-  const { body: { docs }} = await superagent.get(`${API_URL}/book`);
-
-  return docs;
+  try {
+    const { body: { docs }} = await superagent.get(`${API_URL}/book`);
+  
+    return docs;
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 async function getOneBook(id) {
-  const { body: { docs }} = await superagent.get(`${API_URL}/book/${id}`);
-  
-  return docs;
+  try {
+    const { body: { docs }} = await superagent.get(`${API_URL}/book/${id}`);
+    
+    return docs;
+
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 async function getOneBookChapters(id) {
-  const { body: { docs }} = await superagent.get(`${API_URL}/book/${id}/chapter`);
-  
-  return docs;
+  try {
+    const { body: { docs }} = await superagent.get(`${API_URL}/book/${id}/chapter`);
+    
+    return docs;
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 module.exports = {
