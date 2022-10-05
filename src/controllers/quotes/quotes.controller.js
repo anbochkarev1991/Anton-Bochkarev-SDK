@@ -16,6 +16,6 @@ async function getOneQuote(id) {
 getAllChapters();
 
 module.exports = {
-  getAllChapters,
-  getOneChapter,
+  getAllQuotes,
+  getOneQuote,
 }
