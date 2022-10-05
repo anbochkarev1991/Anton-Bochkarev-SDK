@@ -1,10 +1,10 @@
-const axios = require('axios');
-const { API_URL, config } = require('../../constants.js');
+import superagent from 'superagent';
+const { API_URL } = require('../../constants.js');
 
-async function getAllCharacters() {
+async function getAllCharacters(apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/character`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -12,10 +12,10 @@ async function getAllCharacters() {
   }
 }
 
-async function getOneCharacter(id) {
+async function getOneCharacter(id: string, apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/character/${id}`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -23,18 +23,17 @@ async function getOneCharacter(id) {
   }
 }
 
-async function getOneCharacterQuotes(id) {
+async function getOneCharacterQuotes(id: string, apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/character/${id}/quote`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
     throw new Error(err);
   }
 }
-
-module.exports = {
+export {
   getAllCharacters,
   getOneCharacter,
   getOneCharacterQuotes,

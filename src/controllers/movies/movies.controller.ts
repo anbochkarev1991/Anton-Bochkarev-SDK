@@ -1,10 +1,10 @@
-const superagent = require('superagent');
-const { API_URL, API_KEY } = require('../../constants.js');
+import superagent from 'superagent';
+const { API_URL } = require('../../constants.js');
 
-async function getAllMovies() {
+async function getAllMovies(apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/movie`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
   
     return docs;
   } catch (err) {
@@ -12,10 +12,10 @@ async function getAllMovies() {
   }
 }
 
-async function getOneMovie(id) {
+async function getOneMovie(id: string, apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/movie/${id}`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -23,10 +23,10 @@ async function getOneMovie(id) {
   }
 }
 
-async function getOneMovieQuotes(id) {
+async function getOneMovieQuotes(id: string, apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/movie/${id}/quote`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -34,7 +34,7 @@ async function getOneMovieQuotes(id) {
   }
 }
 
-module.exports = {
+export {
   getAllMovies,
   getOneMovie,
   getOneMovieQuotes,

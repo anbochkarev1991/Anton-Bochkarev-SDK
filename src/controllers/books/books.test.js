@@ -1,5 +1,4 @@
 const request = require('supertest');
-const { getAllBooks } = require('./books.controller')
 const { API_URL } = require('../../constants');
 
 describe('Test GET /book', () => {
@@ -8,9 +7,6 @@ describe('Test GET /book', () => {
       .get('/book')
       .expect('Content-Type', /json/)
       .expect(200);
-
-      const books = await getAllBooks();
-      expect(books.length).toBe(3);
   });
 
   test('It should contain three books starts with The Fellowship Of The Ring', async () => {

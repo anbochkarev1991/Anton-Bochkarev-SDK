@@ -1,10 +1,10 @@
-const superagent = require('superagent');
-const { API_URL, API_KEY } = require('../../constants.js');
+import superagent from 'superagent';
+const { API_URL } = require('../../constants.js');
 
-async function getAllQuotes() {
+async function getAllQuotes(apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/quote`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -12,10 +12,10 @@ async function getAllQuotes() {
   }
 }
 
-async function getOneQuote(id) {
+async function getOneQuote(id: string, apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/quote/${id}`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -23,7 +23,7 @@ async function getOneQuote(id) {
   }
 }
 
-module.exports = {
+export {
   getAllQuotes,
   getOneQuote,
 }

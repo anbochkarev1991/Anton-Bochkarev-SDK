@@ -1,10 +1,10 @@
-const superagent = require('superagent');
-const { API_URL, API_KEY } = require('../../constants.js');
+import superagent from 'superagent';
+const { API_URL } = require('../../constants.js');
 
-async function getAllChapters() {
+async function getAllChapters(apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/chapter`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
   
     return docs;
   } catch (err) {
@@ -12,10 +12,10 @@ async function getAllChapters() {
   }
 }
 
-async function getOneChapter(id) {
+async function getOneChapter(id: string, apiKey: string) {
   try {
     const { body: { docs } } = await superagent.get(`${API_URL}/chapter/${id}`)
-      .set('Authorization', `Bearer ${API_KEY}`);
+      .set('Authorization', `Bearer ${apiKey}`);
     
     return docs;
   } catch (err) {
@@ -23,7 +23,7 @@ async function getOneChapter(id) {
   }
 }
 
-module.exports = {
+export {
   getAllChapters,
   getOneChapter,
 }

@@ -1,4 +1,4 @@
-const superagent = require('superagent');
+import superagent from 'superagent';
 const { API_URL } = require('../../constants.js');
 
 async function getAllBooks() {
@@ -32,7 +32,7 @@ async function getOneBookChapters(id) {
   }
 }
 
-module.exports = {
+export {
   getAllBooks,
   getOneBook,
   getOneBookChapters,
